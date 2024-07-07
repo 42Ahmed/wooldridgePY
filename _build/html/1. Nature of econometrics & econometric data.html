@@ -1,0 +1,1377 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Chapter 1 &#8212; Wooldridge Introductory Econometrics Python Solutions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1. Nature of econometrics & econometric data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Simple Regression" href="2.%20Simple%20Linear%20Regression.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Wooldridge Introductory Econometrics Python Solutions - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Wooldridge Introductory Econometrics Python Solutions - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Chapter 1</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="2.%20Simple%20Linear%20Regression.html">2. Simple Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F1. Nature of econometrics & econometric data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1. Nature of econometrics & econometric data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Chapter 1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Chapter 1</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c1-use-the-data-in-wage1-for-this-exercise">C1 Use the data in WAGE1 for this exercise.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-find-the-average-education-level-in-the-sample-what-are-the-lowest-and-highest-years-of-education">(i) Find the average education level in the sample. What are the lowest and highest years of education?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-find-the-average-hourly-wage-in-the-sample-does-it-seem-high-or-low">(ii) Find the average hourly wage in the sample. Does it seem high or low?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-how-many-women-are-in-the-sample-how-many-men">(v) How many women are in the sample? How many men?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c2-use-the-data-in-bwght-to-answer-this-question">C2 Use the data in BWGHT to answer this question</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-how-many-women-are-in-the-sample-and-how-many-report-smoking-during-pregnancy">(i) How many women are in the sample, and how many report smoking during pregnancy?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-what-is-the-average-number-of-cigarettes-smoked-per-day-is-the-average-a-good-measure-of-the-typical-woman-in-this-case-explain">ii) What is the average number of cigarettes smoked per day? Is the average a good measure of the “typical” woman in this case? Explain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-among-women-who-smoked-during-pregnancy-what-is-the-average-number-of-cigarettes">(iii) Among women who smoked during pregnancy, what is the average number of cigarettes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-find-the-average-of-fatheduc-in-the-sample-why-are-only-1-192-observations-used-to-compute-this-average">(iv) Find the average of fatheduc in the sample. Why are only 1,192 observations used to compute this average?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-report-the-average-family-income-and-its-standard-deviation-in-dollars">(v) Report the average family income and its standard deviation in dollars</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#c3-the-data-in-meap01-are-for-the-state-of-michigan-in-the-year-2001-use-these-data-to-answer-the-following-questions">C3 The data in MEAP01 are for the state of Michigan in the year 2001. Use these data to answer the following questions.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-find-the-largest-and-smallest-values-of-math4-does-the-range-make-sense-explain">(i) Find the largest and smallest values of math4. Does the range make sense? Explain.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-how-many-schools-have-a-perfect-pass-rate-on-the-math-test-what-percentage-is-this-of-the-total-sample">(ii) How many schools have a perfect pass rate on the math test? What percentage is this of the total sample?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-how-many-schools-have-math-pass-rates-of-exactly-50">(iii) How many schools have math pass rates of exactly 50%?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-compare-the-average-pass-rates-for-the-math-and-reading-scores-which-test-is-harder-to-pass">(iv) Compare the average pass rates for the math and reading scores. Which test is harder to pass?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v-find-the-correlation-between-math4-and-read4-what-do-you-conclude">(v) Find the correlation between math4 and read4. What do you conclude?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-the-variable-exppp-is-expenditure-per-pupil-find-the-average-of-exppp-along-with-its-standarddeviation-would-you-say-there-is-wide-variation-in-per-pupil-spending">(vi) The variable exppp is expenditure per pupil. Find the average of exppp along with its standarddeviation. Would you say there is wide variation in per pupil spending?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vii-suppose-school-a-spends-6-000-per-student-and-school-b-spends-5-500-per-student-by-whatpercentage-does-school-as-spending-exceed-school-bs-compare-this-to-100-log-6-000-log-5-500-which-is-the-approximation-percentage-difference-based-on-the-difference-in-the-natural-logs">(vii) Suppose School A spends <span class="math notranslate nohighlight">\(6,000 per student and School B spends \)</span>5,500 per student. By whatpercentage does School A’s spending exceed School B’s? Compare this to 100 · [log(6,000) –log(5,500)], which is the approximation percentage difference based on the difference in the natural logs.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c4-the-data-in-jtrain2-come-from-a-job-training-experiment-conducted-for-low-income-men-during-19761977-see-lalonde-1986">C4 The data in JTRAIN2 come from a job training experiment conducted for low-income men during 1976–1977; see Lalonde (1986).</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-use-the-indicator-variable-train-to-determine-the-fraction-of-men-receiving-job-training">(i) Use the indicator variable train to determine the fraction of men receiving job training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-the-variable-re78-is-earnings-from-1978-measured-in-thousands-of-1982-dollars-find-the-averages-of-re78-for-the-sample-of-men-receiving-job-training-and-the-sample-not-receiving-job-training-is-the-difference-economically-large">(ii) The variable re78 is earnings from 1978, measured in thousands of 1982 dollars. Find the averages of re78 for the sample of men receiving job training and the sample not receiving job training. Is the difference economically large?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-the-variable-unem78-is-an-indicator-of-whether-a-man-is-unemployed-or-not-in-1978-what-fraction-of-the-men-who-received-job-training-are-unemployed-what-about-for-men-who-did-not-receive-job-training-comment-on-the-difference">(iii) The variable unem78 is an indicator of whether a man is unemployed or not in 1978. What fraction of the men who received job training are unemployed? What about for men who did not receive job training? Comment on the difference.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-from-parts-ii-and-iii-does-it-appear-that-the-job-training-program-was-effective-what-would-make-our-conclusions-more-convincing">(iv) From parts (ii) and (iii), does it appear that the job training program was effective? What would make our conclusions more convincing?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-1">
+<h1>1. Chapter 1<a class="headerlink" href="#chapter-1" title="Link to this heading">#</a></h1>
+<p>Nature of Econometrics and Economic Data<br />
+information of the datasets can be accessed from <a class="reference external" href="http://fmwww.bc.edu/ec-p/data/wooldridge/datasets.list.html">Boston College</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">wooldridge</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">dataWoo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  J.M. Wooldridge (2016) Introductory Econometrics: A Modern Approach,
+  Cengage Learning, 6th edition.
+
+  401k       401ksubs    admnrev       affairs     airfare
+  alcohol    apple       approval      athlet1     athlet2
+  attend     audit       barium        beauty      benefits
+  beveridge  big9salary  bwght         bwght2      campus
+  card       catholic    cement        census2000  ceosal1
+  ceosal2    charity     consump       corn        countymurders
+  cps78_85   cps91       crime1        crime2      crime3
+  crime4     discrim     driving       earns       econmath
+  elem94_95  engin       expendshares  ezanders    ezunem
+  fair       fertil1     fertil2       fertil3     fish
+  fringe     gpa1        gpa2          gpa3        happiness
+  hprice1    hprice2     hprice3       hseinv      htv
+  infmrt     injury      intdef        intqrt      inven
+  jtrain     jtrain2     jtrain3       kielmc      lawsch85
+  loanapp    lowbrth     mathpnl       meap00_01   meap01
+  meap93     meapsingle  minwage       mlb1        mroz
+  murder     nbasal      nyse          okun        openness
+  pension    phillips    pntsprd       prison      prminwge
+  rdchem     rdtelec     recid         rental      return
+  saving     sleep75     slp75_81      smoke       traffic1
+  traffic2   twoyear     volat         vote1       vote2
+  voucher    wage1       wage2         wagepan     wageprc
+  wine
+</pre></div>
+</div>
+</div>
+</div>
+<section id="c1-use-the-data-in-wage1-for-this-exercise">
+<h2>C1 Use the data in WAGE1 for this exercise.<a class="headerlink" href="#c1-use-the-data-in-wage1-for-this-exercise" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;WAGE1&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wage</th>
+      <th>educ</th>
+      <th>exper</th>
+      <th>tenure</th>
+      <th>nonwhite</th>
+      <th>female</th>
+      <th>married</th>
+      <th>numdep</th>
+      <th>smsa</th>
+      <th>northcen</th>
+      <th>...</th>
+      <th>trcommpu</th>
+      <th>trade</th>
+      <th>services</th>
+      <th>profserv</th>
+      <th>profocc</th>
+      <th>clerocc</th>
+      <th>servocc</th>
+      <th>lwage</th>
+      <th>expersq</th>
+      <th>tenursq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3.10</td>
+      <td>11</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.131402</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.24</td>
+      <td>12</td>
+      <td>22</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1.175573</td>
+      <td>484</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.00</td>
+      <td>11</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.098612</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6.00</td>
+      <td>8</td>
+      <td>44</td>
+      <td>28</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.791759</td>
+      <td>1936</td>
+      <td>784</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.30</td>
+      <td>12</td>
+      <td>7</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.667707</td>
+      <td>49</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div></div></div>
+</div>
+<p>WAGE1.DES</p>
+<p>wage      educ      exper     tenure    nonwhite  female    married   numdep<br />
+smsa      northcen  south     west      construc  ndurman   trcommpu  trade<br />
+services  profserv  profocc   clerocc   servocc   lwage     expersq   tenursq</p>
+<p>Obs:   526</p>
+<ol class="arabic simple">
+<li><p>wage                     average hourly earnings</p></li>
+<li><p>educ                     years of education</p></li>
+<li><p>exper                    years potential experience</p></li>
+<li><p>tenure                   years with current employer</p></li>
+<li><p>nonwhite                 =1 if nonwhite</p></li>
+<li><p>female                   =1 if female</p></li>
+<li><p>married                  =1 if married</p></li>
+<li><p>numdep                   number of dependents</p></li>
+<li><p>smsa                     =1 if live in SMSA</p></li>
+<li><p>northcen                 =1 if live in north central U.S</p></li>
+<li><p>south                    =1 if live in southern region</p></li>
+<li><p>west                     =1 if live in western region</p></li>
+<li><p>construc                 =1 if work in construc. indus.</p></li>
+<li><p>ndurman                  =1 if in nondur. manuf. indus.</p></li>
+<li><p>trcommpu                 =1 if in trans, commun, pub ut</p></li>
+<li><p>trade                    =1 if in wholesale or retail</p></li>
+<li><p>services                 =1 if in services indus.</p></li>
+<li><p>profserv                 =1 if in prof. serv. indus.</p></li>
+<li><p>profocc                  =1 if in profess. occupation</p></li>
+<li><p>clerocc                  =1 if in clerical occupation</p></li>
+<li><p>servocc                  =1 if in service occupation</p></li>
+<li><p>lwage                    log(wage)</p></li>
+<li><p>expersq                  exper^2</p></li>
+<li><p>tenursq                  tenure^2</p></li>
+</ol>
+<section id="i-find-the-average-education-level-in-the-sample-what-are-the-lowest-and-highest-years-of-education">
+<h3>(i) Find the average education level in the sample. What are the lowest and highest years of education?<a class="headerlink" href="#i-find-the-average-education-level-in-the-sample-what-are-the-lowest-and-highest-years-of-education" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average edu years:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;educ&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lowest edu years:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;educ&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Highest edu years:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;educ&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average edu years: 12.6
+Lowest edu years: 0
+Highest edu years: 18
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ii-find-the-average-hourly-wage-in-the-sample-does-it-seem-high-or-low">
+<h3>(ii) Find the average hourly wage in the sample. Does it seem high or low?<a class="headerlink" href="#ii-find-the-average-hourly-wage-in-the-sample-does-it-seem-high-or-low" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average hourly wage:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;wage&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average hourly wage: 5.9
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="v-how-many-women-are-in-the-sample-how-many-men">
+<h3>(v) How many women are in the sample? How many men?<a class="headerlink" href="#v-how-many-women-are-in-the-sample-how-many-men" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of females:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;female&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of males:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;female&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of females: 252
+Number of males: 274
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="c2-use-the-data-in-bwght-to-answer-this-question">
+<h2>C2 Use the data in BWGHT to answer this question<a class="headerlink" href="#c2-use-the-data-in-bwght-to-answer-this-question" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;BWGHT&#39;</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>faminc</th>
+      <th>cigtax</th>
+      <th>cigprice</th>
+      <th>bwght</th>
+      <th>fatheduc</th>
+      <th>motheduc</th>
+      <th>parity</th>
+      <th>male</th>
+      <th>white</th>
+      <th>cigs</th>
+      <th>lbwght</th>
+      <th>bwghtlbs</th>
+      <th>packs</th>
+      <th>lfaminc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>13.5</td>
+      <td>16.5</td>
+      <td>122.300003</td>
+      <td>109</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4.691348</td>
+      <td>6.8125</td>
+      <td>0.0</td>
+      <td>2.602690</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7.5</td>
+      <td>16.5</td>
+      <td>122.300003</td>
+      <td>133</td>
+      <td>6.0</td>
+      <td>12.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.890349</td>
+      <td>8.3125</td>
+      <td>0.0</td>
+      <td>2.014903</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.5</td>
+      <td>16.5</td>
+      <td>122.300003</td>
+      <td>129</td>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.859812</td>
+      <td>8.0625</td>
+      <td>0.0</td>
+      <td>-0.693147</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15.5</td>
+      <td>16.5</td>
+      <td>122.300003</td>
+      <td>126</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.836282</td>
+      <td>7.8750</td>
+      <td>0.0</td>
+      <td>2.740840</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>27.5</td>
+      <td>16.5</td>
+      <td>122.300003</td>
+      <td>134</td>
+      <td>14.0</td>
+      <td>12.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4.897840</td>
+      <td>8.3750</td>
+      <td>0.0</td>
+      <td>3.314186</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>BWGHT.DES</p>
+<p>faminc    cigtax    cigprice  bwght     fatheduc  motheduc  parity    male<br />
+white     cigs      lbwght    bwghtlbs  packs     lfaminc</p>
+<p>Obs:  1388</p>
+<ol class="arabic simple">
+<li><p>faminc                   1988 family income, $1000s</p></li>
+<li><p>cigtax                   cig. tax in home state, 1988</p></li>
+<li><p>cigprice                 cig. price in home state, 1988</p></li>
+<li><p>bwght                    birth weight, ounces</p></li>
+<li><p>fatheduc                 father’s yrs of educ</p></li>
+<li><p>motheduc                 mother’s yrs of educ</p></li>
+<li><p>parity                   birth order of child</p></li>
+<li><p>male                     =1 if male child</p></li>
+<li><p>white                    =1 if white</p></li>
+<li><p>cigs                     cigs smked per day while preg</p></li>
+<li><p>lbwght                   log of bwght</p></li>
+<li><p>bwghtlbs                 birth weight, pounds</p></li>
+<li><p>packs                    packs smked per day while preg</p></li>
+<li><p>lfaminc                  log(faminc)</p></li>
+</ol>
+<section id="i-how-many-women-are-in-the-sample-and-how-many-report-smoking-during-pregnancy">
+<h3>(i) How many women are in the sample, and how many report smoking during pregnancy?<a class="headerlink" href="#i-how-many-women-are-in-the-sample-and-how-many-report-smoking-during-pregnancy" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Numbers of females:&quot;</span><span class="p">,</span> <span class="n">df2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Smoking during pregnancy:&quot;</span><span class="p">,</span>
+      <span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;cigs&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numbers of females: 1388
+Smoking during pregnancy: 212
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ii-what-is-the-average-number-of-cigarettes-smoked-per-day-is-the-average-a-good-measure-of-the-typical-woman-in-this-case-explain">
+<h3>ii) What is the average number of cigarettes smoked per day? Is the average a good measure of the “typical” woman in this case? Explain<a class="headerlink" href="#ii-what-is-the-average-number-of-cigarettes-smoked-per-day-is-the-average-a-good-measure-of-the-typical-woman-in-this-case-explain" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean cigs:&quot;</span><span class="p">,</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;cigs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Median cigs:&#39;</span><span class="p">,</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;cigs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Percent not smoking:&#39;</span><span class="p">,</span>
+      <span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;cigs&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># 85% of women dont smoke thats why mean is inaccurate here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean cigs: 2.1
+Median cigs: 0.0
+Percent not smoking: 84.7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iii-among-women-who-smoked-during-pregnancy-what-is-the-average-number-of-cigarettes">
+<h3>(iii) Among women who smoked during pregnancy, what is the average number of cigarettes<a class="headerlink" href="#iii-among-women-who-smoked-during-pregnancy-what-is-the-average-number-of-cigarettes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average cigs among smokers:&quot;</span><span class="p">,</span>
+      <span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;cigs&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">][</span><span class="s1">&#39;cigs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average cigs among smokers: 13.7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iv-find-the-average-of-fatheduc-in-the-sample-why-are-only-1-192-observations-used-to-compute-this-average">
+<h3>(iv) Find the average of fatheduc in the sample. Why are only 1,192 observations used to compute this average?<a class="headerlink" href="#iv-find-the-average-of-fatheduc-in-the-sample-why-are-only-1-192-observations-used-to-compute-this-average" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number Of Missing Data:&quot;</span><span class="p">,</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;fatheduc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average father education:&quot;</span><span class="p">,</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;fatheduc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number Of Missing Data: 196
+Average father education: 13.2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="v-report-the-average-family-income-and-its-standard-deviation-in-dollars">
+<h3>(v) Report the average family income and its standard deviation in dollars<a class="headerlink" href="#v-report-the-average-family-income-and-its-standard-deviation-in-dollars" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average family income&quot;</span><span class="p">,</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;faminc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation of family income&quot;</span><span class="p">,</span> <span class="n">df2</span><span class="p">[</span><span class="s2">&quot;faminc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average family income 29.0
+Standard deviation of family income 18.7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="c3-the-data-in-meap01-are-for-the-state-of-michigan-in-the-year-2001-use-these-data-to-answer-the-following-questions">
+<h1>C3 The data in MEAP01 are for the state of Michigan in the year 2001. Use these data to answer the following questions.<a class="headerlink" href="#c3-the-data-in-meap01-are-for-the-state-of-michigan-in-the-year-2001-use-these-data-to-answer-the-following-questions" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s2">&quot;MEAP01&quot;</span><span class="p">)</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dcode</th>
+      <th>bcode</th>
+      <th>math4</th>
+      <th>read4</th>
+      <th>lunch</th>
+      <th>enroll</th>
+      <th>expend</th>
+      <th>exppp</th>
+      <th>lenroll</th>
+      <th>lexpend</th>
+      <th>lexppp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1010.0</td>
+      <td>4937</td>
+      <td>83.300003</td>
+      <td>77.800003</td>
+      <td>40.599998</td>
+      <td>468</td>
+      <td>2747475.0</td>
+      <td>5870.672852</td>
+      <td>6.148468</td>
+      <td>14.826193</td>
+      <td>8.677725</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2070.0</td>
+      <td>597</td>
+      <td>90.300003</td>
+      <td>82.300003</td>
+      <td>27.100000</td>
+      <td>679</td>
+      <td>1505772.0</td>
+      <td>2217.631836</td>
+      <td>6.520621</td>
+      <td>14.224816</td>
+      <td>7.704195</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>meap01</p>
+<p>A dataset with 1823 observations on 11 variables:</p>
+<p>dcode: district code</p>
+<p>bcode: building code</p>
+<p>math4: percent students satisfactory, 4th grade math</p>
+<p>read4: percent students satisfactory, 4th grade reading</p>
+<p>lunch: percent students eligible for free or reduced lunch</p>
+<p>enroll: school enrollment</p>
+<p>expend: total spending, $</p>
+<p>exppp: expenditures per pupil: expend/enroll</p>
+<p>lenroll: log(enroll)</p>
+<p>lexpend: log(expend)</p>
+<p>lexppp: log(exppp)</p>
+<section id="i-find-the-largest-and-smallest-values-of-math4-does-the-range-make-sense-explain">
+<h2>(i) Find the largest and smallest values of math4. Does the range make sense? Explain.<a class="headerlink" href="#i-find-the-largest-and-smallest-values-of-math4-does-the-range-make-sense-explain" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max student satisfaction:&quot;</span><span class="p">,</span> <span class="n">df3</span><span class="p">[</span><span class="s1">&#39;math4&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;min student satisfaction:&quot;</span><span class="p">,</span> <span class="n">df3</span><span class="p">[</span><span class="s1">&#39;math4&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max student satisfaction: 100.0
+min student satisfaction: 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;math4&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;Axes: title={&#39;center&#39;: &#39;math4&#39;}&gt;]], dtype=object)
+</pre></div>
+</div>
+<img alt="_images/cb6855dffb1c80c7a368661026f32667f311cdcc27f042bdf2dee4fad7b0e9ed.png" src="_images/cb6855dffb1c80c7a368661026f32667f311cdcc27f042bdf2dee4fad7b0e9ed.png" />
+</div>
+</div>
+</section>
+<section id="ii-how-many-schools-have-a-perfect-pass-rate-on-the-math-test-what-percentage-is-this-of-the-total-sample">
+<h2>(ii) How many schools have a perfect pass rate on the math test? What percentage is this of the total sample?<a class="headerlink" href="#ii-how-many-schools-have-a-perfect-pass-rate-on-the-math-test-what-percentage-is-this-of-the-total-sample" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;schools with perfect math rate:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;math4&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;percentage of schools with perfect rate:&quot;</span><span class="p">,</span>
+      <span class="p">((</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;math4&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>schools with perfect math rate: 38
+percentage of schools with perfect rate: 2.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iii-how-many-schools-have-math-pass-rates-of-exactly-50">
+<h2>(iii) How many schools have math pass rates of exactly 50%?<a class="headerlink" href="#iii-how-many-schools-have-math-pass-rates-of-exactly-50" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of schools with 50% passing rate:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s2">&quot;math4&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of schools with 50% passing rate: 17
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iv-compare-the-average-pass-rates-for-the-math-and-reading-scores-which-test-is-harder-to-pass">
+<h2>(iv) Compare the average pass rates for the math and reading scores. Which test is harder to pass?<a class="headerlink" href="#iv-compare-the-average-pass-rates-for-the-math-and-reading-scores-which-test-is-harder-to-pass" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average math rate:&quot;</span><span class="p">,</span> <span class="n">df3</span><span class="p">[</span><span class="s1">&#39;math4&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average reading rate:&quot;</span><span class="p">,</span> <span class="n">df3</span><span class="p">[</span><span class="s1">&#39;read4&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># reading seems to be harder in year 2001</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average math rate: 71.9
+Average reading rate: 60.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="v-find-the-correlation-between-math4-and-read4-what-do-you-conclude">
+<h2>(v) Find the correlation between math4 and read4. What do you conclude?<a class="headerlink" href="#v-find-the-correlation-between-math4-and-read4-what-do-you-conclude" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;math4&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;read4&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;math4&#39;, ylabel=&#39;read4&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/37dae10b101dfb49864907a8d42de418fbb1ea15da03e75297f5b8db8193d698.png" src="_images/37dae10b101dfb49864907a8d42de418fbb1ea15da03e75297f5b8db8193d698.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># correlation matrix</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s2">&quot;math4&quot;</span><span class="p">],</span> <span class="n">df3</span><span class="p">[</span><span class="s2">&quot;read4&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.        , 0.84272815],
+       [0.84272815, 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;correlation bet. math and read:&quot;</span><span class="p">,</span>
+      <span class="n">df3</span><span class="p">[</span><span class="s2">&quot;math4&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s2">&quot;read4&quot;</span><span class="p">])</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>correlation bet. math and read: 0.8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vi-the-variable-exppp-is-expenditure-per-pupil-find-the-average-of-exppp-along-with-its-standarddeviation-would-you-say-there-is-wide-variation-in-per-pupil-spending">
+<h2>(vi) The variable exppp is expenditure per pupil. Find the average of exppp along with its standarddeviation. Would you say there is wide variation in per pupil spending?<a class="headerlink" href="#vi-the-variable-exppp-is-expenditure-per-pupil-find-the-average-of-exppp-along-with-its-standarddeviation-would-you-say-there-is-wide-variation-in-per-pupil-spending" title="Link to this heading">#</a></h2>
+</section>
+<section id="vii-suppose-school-a-spends-6-000-per-student-and-school-b-spends-5-500-per-student-by-whatpercentage-does-school-as-spending-exceed-school-bs-compare-this-to-100-log-6-000-log-5-500-which-is-the-approximation-percentage-difference-based-on-the-difference-in-the-natural-logs">
+<h2>(vii) Suppose School A spends <span class="math notranslate nohighlight">\(6,000 per student and School B spends \)</span>5,500 per student. By whatpercentage does School A’s spending exceed School B’s? Compare this to 100 · [log(6,000) –log(5,500)], which is the approximation percentage difference based on the difference in the natural logs.<a class="headerlink" href="#vii-suppose-school-a-spends-6-000-per-student-and-school-b-spends-5-500-per-student-by-whatpercentage-does-school-as-spending-exceed-school-bs-compare-this-to-100-log-6-000-log-5-500-which-is-the-approximation-percentage-difference-based-on-the-difference-in-the-natural-logs" title="Link to this heading">#</a></h2>
+</section>
+<section id="c4-the-data-in-jtrain2-come-from-a-job-training-experiment-conducted-for-low-income-men-during-19761977-see-lalonde-1986">
+<h2>C4 The data in JTRAIN2 come from a job training experiment conducted for low-income men during 1976–1977; see Lalonde (1986).<a class="headerlink" href="#c4-the-data-in-jtrain2-come-from-a-job-training-experiment-conducted-for-low-income-men-during-19761977-see-lalonde-1986" title="Link to this heading">#</a></h2>
+<section id="i-use-the-indicator-variable-train-to-determine-the-fraction-of-men-receiving-job-training">
+<h3>(i) Use the indicator variable train to determine the fraction of men receiving job training<a class="headerlink" href="#i-use-the-indicator-variable-train-to-determine-the-fraction-of-men-receiving-job-training" title="Link to this heading">#</a></h3>
+</section>
+<section id="ii-the-variable-re78-is-earnings-from-1978-measured-in-thousands-of-1982-dollars-find-the-averages-of-re78-for-the-sample-of-men-receiving-job-training-and-the-sample-not-receiving-job-training-is-the-difference-economically-large">
+<h3>(ii) The variable re78 is earnings from 1978, measured in thousands of 1982 dollars. Find the averages of re78 for the sample of men receiving job training and the sample not receiving job training. Is the difference economically large?<a class="headerlink" href="#ii-the-variable-re78-is-earnings-from-1978-measured-in-thousands-of-1982-dollars-find-the-averages-of-re78-for-the-sample-of-men-receiving-job-training-and-the-sample-not-receiving-job-training-is-the-difference-economically-large" title="Link to this heading">#</a></h3>
+</section>
+<section id="iii-the-variable-unem78-is-an-indicator-of-whether-a-man-is-unemployed-or-not-in-1978-what-fraction-of-the-men-who-received-job-training-are-unemployed-what-about-for-men-who-did-not-receive-job-training-comment-on-the-difference">
+<h3>(iii) The variable unem78 is an indicator of whether a man is unemployed or not in 1978. What fraction of the men who received job training are unemployed? What about for men who did not receive job training? Comment on the difference.<a class="headerlink" href="#iii-the-variable-unem78-is-an-indicator-of-whether-a-man-is-unemployed-or-not-in-1978-what-fraction-of-the-men-who-received-job-training-are-unemployed-what-about-for-men-who-did-not-receive-job-training-comment-on-the-difference" title="Link to this heading">#</a></h3>
+</section>
+<section id="iv-from-parts-ii-and-iii-does-it-appear-that-the-job-training-program-was-effective-what-would-make-our-conclusions-more-convincing">
+<h3>(iv) From parts (ii) and (iii), does it appear that the job training program was effective? What would make our conclusions more convincing?<a class="headerlink" href="#iv-from-parts-ii-and-iii-does-it-appear-that-the-job-training-program-was-effective-what-would-make-our-conclusions-more-convincing" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2.%20Simple%20Linear%20Regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2. Simple Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Chapter 1</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c1-use-the-data-in-wage1-for-this-exercise">C1 Use the data in WAGE1 for this exercise.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-find-the-average-education-level-in-the-sample-what-are-the-lowest-and-highest-years-of-education">(i) Find the average education level in the sample. What are the lowest and highest years of education?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-find-the-average-hourly-wage-in-the-sample-does-it-seem-high-or-low">(ii) Find the average hourly wage in the sample. Does it seem high or low?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-how-many-women-are-in-the-sample-how-many-men">(v) How many women are in the sample? How many men?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c2-use-the-data-in-bwght-to-answer-this-question">C2 Use the data in BWGHT to answer this question</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-how-many-women-are-in-the-sample-and-how-many-report-smoking-during-pregnancy">(i) How many women are in the sample, and how many report smoking during pregnancy?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-what-is-the-average-number-of-cigarettes-smoked-per-day-is-the-average-a-good-measure-of-the-typical-woman-in-this-case-explain">ii) What is the average number of cigarettes smoked per day? Is the average a good measure of the “typical” woman in this case? Explain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-among-women-who-smoked-during-pregnancy-what-is-the-average-number-of-cigarettes">(iii) Among women who smoked during pregnancy, what is the average number of cigarettes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-find-the-average-of-fatheduc-in-the-sample-why-are-only-1-192-observations-used-to-compute-this-average">(iv) Find the average of fatheduc in the sample. Why are only 1,192 observations used to compute this average?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-report-the-average-family-income-and-its-standard-deviation-in-dollars">(v) Report the average family income and its standard deviation in dollars</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#c3-the-data-in-meap01-are-for-the-state-of-michigan-in-the-year-2001-use-these-data-to-answer-the-following-questions">C3 The data in MEAP01 are for the state of Michigan in the year 2001. Use these data to answer the following questions.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-find-the-largest-and-smallest-values-of-math4-does-the-range-make-sense-explain">(i) Find the largest and smallest values of math4. Does the range make sense? Explain.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-how-many-schools-have-a-perfect-pass-rate-on-the-math-test-what-percentage-is-this-of-the-total-sample">(ii) How many schools have a perfect pass rate on the math test? What percentage is this of the total sample?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-how-many-schools-have-math-pass-rates-of-exactly-50">(iii) How many schools have math pass rates of exactly 50%?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-compare-the-average-pass-rates-for-the-math-and-reading-scores-which-test-is-harder-to-pass">(iv) Compare the average pass rates for the math and reading scores. Which test is harder to pass?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v-find-the-correlation-between-math4-and-read4-what-do-you-conclude">(v) Find the correlation between math4 and read4. What do you conclude?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-the-variable-exppp-is-expenditure-per-pupil-find-the-average-of-exppp-along-with-its-standarddeviation-would-you-say-there-is-wide-variation-in-per-pupil-spending">(vi) The variable exppp is expenditure per pupil. Find the average of exppp along with its standarddeviation. Would you say there is wide variation in per pupil spending?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vii-suppose-school-a-spends-6-000-per-student-and-school-b-spends-5-500-per-student-by-whatpercentage-does-school-as-spending-exceed-school-bs-compare-this-to-100-log-6-000-log-5-500-which-is-the-approximation-percentage-difference-based-on-the-difference-in-the-natural-logs">(vii) Suppose School A spends <span class="math notranslate nohighlight">\(6,000 per student and School B spends \)</span>5,500 per student. By whatpercentage does School A’s spending exceed School B’s? Compare this to 100 · [log(6,000) –log(5,500)], which is the approximation percentage difference based on the difference in the natural logs.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c4-the-data-in-jtrain2-come-from-a-job-training-experiment-conducted-for-low-income-men-during-19761977-see-lalonde-1986">C4 The data in JTRAIN2 come from a job training experiment conducted for low-income men during 1976–1977; see Lalonde (1986).</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-use-the-indicator-variable-train-to-determine-the-fraction-of-men-receiving-job-training">(i) Use the indicator variable train to determine the fraction of men receiving job training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-the-variable-re78-is-earnings-from-1978-measured-in-thousands-of-1982-dollars-find-the-averages-of-re78-for-the-sample-of-men-receiving-job-training-and-the-sample-not-receiving-job-training-is-the-difference-economically-large">(ii) The variable re78 is earnings from 1978, measured in thousands of 1982 dollars. Find the averages of re78 for the sample of men receiving job training and the sample not receiving job training. Is the difference economically large?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-the-variable-unem78-is-an-indicator-of-whether-a-man-is-unemployed-or-not-in-1978-what-fraction-of-the-men-who-received-job-training-are-unemployed-what-about-for-men-who-did-not-receive-job-training-comment-on-the-difference">(iii) The variable unem78 is an indicator of whether a man is unemployed or not in 1978. What fraction of the men who received job training are unemployed? What about for men who did not receive job training? Comment on the difference.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-from-parts-ii-and-iii-does-it-appear-that-the-job-training-program-was-effective-what-would-make-our-conclusions-more-convincing">(iv) From parts (ii) and (iii), does it appear that the job training program was effective? What would make our conclusions more convincing?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ahmed H. Darwish
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
