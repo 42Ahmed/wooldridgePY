@@ -1,6 +1,22 @@
 format: jb-book
 root: intro
 chapters:
-- file: 1. Nature of econometrics & econometric data.ipynb
-- file: 2. Simple Linear Regression.ipynb
-- file: markdown-notebooks
+- file: one.ipynb
+- file: two.ipynb
+- file: three.ipynb
+- file: four.ipynb
+- file: five.ipynb
+- file: six.ipynb
+- file: seven.ipynb
+- file: eight.ipynb
+- file: nine.ipynb
+- file: ten.ipynb
+- file: eleven.ipynb
+- file: twelve.ipynb
+- file: thirteen.ipynb
+- file: fourteen.ipynb
+- file: fifteen.ipynb
+- file: sixteen.ipynb
+- file: seventeen.ipynb
+- file: eighteen.ipynb
+- file: nineteen.ipynb

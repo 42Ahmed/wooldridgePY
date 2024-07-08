@@ -1,9 +1,9 @@
 
 
-title: Wooldridge Introductory Econometrics Python Solutions
+title: Wooldridge Introductory Econometrics Python Solution By Ahmed H. Darwish
 author: Ahmed H. Darwish
-logo: logo.png
-
+logo: Wooldridge Introductory Econometrics Python Solution By Ahmed H. Darwish
+copytight: 2024
 
 execute:
   execute_notebooks: "off"
@@ -18,7 +18,7 @@ bibtex_bibfiles:
 
 
 repository:
-  url: https://github.com/executablebooks/jupyter-book  
+  url: https://github.com/42Ahmed/woolpy
   path_to_book: docs  
   branch: master  
 
