@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. The Simple Regression Model &#8212; Wooldridge Introductory Econometrics Python Solution By Ahmed H. Darwish</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'two';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Multiple Regression Analysis: Estimation" href="three.html" />
+    <link rel="prev" title="1. The Nature of Econometrics and Economic Data" href="one.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Wooldridge Introductory Econometrics Python Solution By Ahmed H. Darwish</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Introductory Econometrics Python Solution
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="one.html">1. The Nature of Econometrics and Economic Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. The Simple Regression Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="three.html">3. Multiple Regression Analysis: Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="four.html">4. Multiple Regression Analysis: Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="five.html">5. Multiple Regression Analysis: OLS Asymptotics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="six.html">6. Multiple Regression Analysis: Further Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="seven.html">7. Multiple Regression Analysis with Qualitative Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eight.html">8. Heteroskedasticity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nine.html">9. More on Specification and Data Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ten.html">10. Basic Regression Analysis with Time Series Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eleven.html">11. Further Issues in Using OLS with Time Series Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twelve.html">12. Serial Correlation and Heteroskedasticity in Time Series Regressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thirteen.html">13. Pooling Cross Sections across Time: Simple Panel Data Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fourteen.html">14. Advanced Panel Data Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fifteen.html">15. Instrumental Variables Estimation and Two-Stage Least Squares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sixteen.html">16. Simultaneous Equations Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="seventeen.html">17. Limited Dependent Variable Models and Sample Selection Corrections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eighteen.html">18. Advanced Time Series Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nineteen.html">19. Carrying Out an Empirical Project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/42Ahmed/woolpy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/42Ahmed/woolpy/issues/new?title=Issue%20on%20page%20%2Ftwo.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/two.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2. The Simple Regression Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c1">C1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c2">C2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c3">C3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-simple-regression-model">
+<h1>2. The Simple Regression Model<a class="headerlink" href="#the-simple-regression-model" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">wooldridge</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">dataWoo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  J.M. Wooldridge (2016) Introductory Econometrics: A Modern Approach,
+  Cengage Learning, 6th edition.
+
+  401k       401ksubs    admnrev       affairs     airfare
+  alcohol    apple       approval      athlet1     athlet2
+  attend     audit       barium        beauty      benefits
+  beveridge  big9salary  bwght         bwght2      campus
+  card       catholic    cement        census2000  ceosal1
+  ceosal2    charity     consump       corn        countymurders
+  cps78_85   cps91       crime1        crime2      crime3
+  crime4     discrim     driving       earns       econmath
+  elem94_95  engin       expendshares  ezanders    ezunem
+  fair       fertil1     fertil2       fertil3     fish
+  fringe     gpa1        gpa2          gpa3        happiness
+  hprice1    hprice2     hprice3       hseinv      htv
+  infmrt     injury      intdef        intqrt      inven
+  jtrain     jtrain2     jtrain3       kielmc      lawsch85
+  loanapp    lowbrth     mathpnl       meap00_01   meap01
+  meap93     meapsingle  minwage       mlb1        mroz
+  murder     nbasal      nyse          okun        openness
+  pension    phillips    pntsprd       prison      prminwge
+  rdchem     rdtelec     recid         rental      return
+  saving     sleep75     slp75_81      smoke       traffic1
+  traffic2   twoyear     volat         vote1       vote2
+  voucher    wage1       wage2         wagepan     wageprc
+  wine
+</pre></div>
+</div>
+</div>
+</div>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="c1">
+<h3>C1<a class="headerlink" href="#c1" title="Link to this heading">#</a></h3>
+<p>The data in 401K are a subset of data analyzed by Papke (1995) to study the relationship between
+participation in a 401(k) pension plan and the generosity of the plan. The variable prate is the percentage of eligible workers with an active account; this is the variable we would like to explain. The
+measure of generosity is the plan match rate, mrate. This variable gives the average amount the firm
+contributes to each worker’s plan for each <span class="math notranslate nohighlight">\(1 contribution by the worker. For example , if mrate =   0.50, then a \)</span>1 contribution by the worker is matched by a 50¢ contribution by the firm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;401K&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>prate</th>
+      <th>mrate</th>
+      <th>totpart</th>
+      <th>totelg</th>
+      <th>age</th>
+      <th>totemp</th>
+      <th>sole</th>
+      <th>ltotemp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>26.100000</td>
+      <td>0.21</td>
+      <td>1653.0</td>
+      <td>6322.0</td>
+      <td>8</td>
+      <td>8709.0</td>
+      <td>0</td>
+      <td>9.072112</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100.000000</td>
+      <td>1.42</td>
+      <td>262.0</td>
+      <td>262.0</td>
+      <td>6</td>
+      <td>315.0</td>
+      <td>1</td>
+      <td>5.752573</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>97.599998</td>
+      <td>0.91</td>
+      <td>166.0</td>
+      <td>170.0</td>
+      <td>10</td>
+      <td>275.0</td>
+      <td>1</td>
+      <td>5.616771</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100.000000</td>
+      <td>0.42</td>
+      <td>257.0</td>
+      <td>257.0</td>
+      <td>7</td>
+      <td>500.0</td>
+      <td>0</td>
+      <td>6.214608</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>82.500000</td>
+      <td>0.53</td>
+      <td>591.0</td>
+      <td>716.0</td>
+      <td>28</td>
+      <td>933.0</td>
+      <td>1</td>
+      <td>6.838405</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;401K&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name of dataset: 401k
+no of variables: 8
+no of observations: 1534
+
++----------+---------------------------------+
+| variable | label                           |
++----------+---------------------------------+
+| prate    | participation rate, percent     |
+| mrate    | 401k plan match rate            |
+| totpart  | total 401k participants         |
+| totelg   | total eligible for 401k plan    |
+| age      | age of 401k plan                |
+| totemp   | total number of firm employees  |
+| sole     | = 1 if 401k is firm&#39;s sole plan |
+| ltotemp  | log of totemp                   |
++----------+---------------------------------+
+
+L.E. Papke (1995), “Participation in and Contributions to 401(k)
+Pension Plans:Evidence from Plan Data,” Journal of Human Resources 30,
+311-325. Professor Papke kindly provided these data. She gathered them
+from the Internal Revenue Service’s Form 5500 tapes.
+</pre></div>
+</div>
+</div>
+</div>
+<p>(i) Find the average participation rate and the average match rate in the sample of plans.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average participation rate:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;prate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average match rate:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mrate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average participation rate: 87.36
+Average match rate: 0.73
+</pre></div>
+</div>
+</div>
+</div>
+<p>(ii) Now, estimate the simple regression equation
+$<span class="math notranslate nohighlight">\(
+\hat{prate} = \hat{b}_0 + \hat{b}_1 mrate
+\)</span>$</p>
+<p>and report the results along with the sample size and R-squared</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prate_hat</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;prate ~ 1 + mrate&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;results:&quot;</span><span class="p">,</span> <span class="n">prate_hat</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R squared:&quot;</span><span class="p">,</span> <span class="n">prate_hat</span><span class="o">.</span><span class="n">rsquared</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sample size:&quot;</span><span class="p">,</span> <span class="n">prate_hat</span><span class="o">.</span><span class="n">nobs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>results: Intercept    83.075455
+mrate         5.861079
+dtype: float64
+R squared: 0.075
+Sample size: 1534.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>(iii) Interpret the intercept in your equation. Interpret the coefficient on mrate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;intercept:&#39;</span><span class="p">,</span> <span class="n">prate_hat</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="fm">__round__</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>intercept: 83.08
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find the predicted prate when mrate = 3.5. Is this a reasonable prediction? Explain what is
+happening here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">prate_hat</span><span class="o">.</span><span class="n">predict</span><span class="p">({</span><span class="s1">&#39;mrate&#39;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">}),</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    103.59
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>(v) How much of the variation in prate is explained by mrate? Is this a lot in your opinion?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percentage explained:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">prate_hat</span><span class="o">.</span><span class="n">rsquared</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Percentage explained: 7.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c2">
+<h3>C2<a class="headerlink" href="#c2" title="Link to this heading">#</a></h3>
+<p>The data set in CEOSAL2 contains information on chief executive officers for U.S. corporations. The
+variable salary is annual compensation, in thousands of dollars, and ceoten is prior number of years as
+company CEO.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s2">&quot;CEOSAL2&quot;</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>salary</th>
+      <th>age</th>
+      <th>college</th>
+      <th>grad</th>
+      <th>comten</th>
+      <th>ceoten</th>
+      <th>sales</th>
+      <th>profits</th>
+      <th>mktval</th>
+      <th>lsalary</th>
+      <th>lsales</th>
+      <th>lmktval</th>
+      <th>comtensq</th>
+      <th>ceotensq</th>
+      <th>profmarg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1161</td>
+      <td>49</td>
+      <td>1</td>
+      <td>1</td>
+      <td>9</td>
+      <td>2</td>
+      <td>6200.0</td>
+      <td>966</td>
+      <td>23200.0</td>
+      <td>7.057037</td>
+      <td>8.732305</td>
+      <td>10.051908</td>
+      <td>81</td>
+      <td>4</td>
+      <td>15.580646</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>600</td>
+      <td>43</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10</td>
+      <td>10</td>
+      <td>283.0</td>
+      <td>48</td>
+      <td>1100.0</td>
+      <td>6.396930</td>
+      <td>5.645447</td>
+      <td>7.003066</td>
+      <td>100</td>
+      <td>100</td>
+      <td>16.961130</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>379</td>
+      <td>51</td>
+      <td>1</td>
+      <td>1</td>
+      <td>9</td>
+      <td>3</td>
+      <td>169.0</td>
+      <td>40</td>
+      <td>1100.0</td>
+      <td>5.937536</td>
+      <td>5.129899</td>
+      <td>7.003066</td>
+      <td>81</td>
+      <td>9</td>
+      <td>23.668638</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>651</td>
+      <td>55</td>
+      <td>1</td>
+      <td>0</td>
+      <td>22</td>
+      <td>22</td>
+      <td>1100.0</td>
+      <td>-54</td>
+      <td>1000.0</td>
+      <td>6.478509</td>
+      <td>7.003066</td>
+      <td>6.907755</td>
+      <td>484</td>
+      <td>484</td>
+      <td>-4.909091</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>497</td>
+      <td>44</td>
+      <td>1</td>
+      <td>1</td>
+      <td>8</td>
+      <td>6</td>
+      <td>351.0</td>
+      <td>28</td>
+      <td>387.0</td>
+      <td>6.208590</td>
+      <td>5.860786</td>
+      <td>5.958425</td>
+      <td>64</td>
+      <td>36</td>
+      <td>7.977208</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataWoo</span><span class="p">(</span><span class="s2">&quot;CEOSAL2&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name of dataset: ceosal2
+no of variables: 15
+no of observations: 177
+
++----------+--------------------------------+
+| variable | label                          |
++----------+--------------------------------+
+| salary   | 1990 compensation, $1000s      |
+| age      | in years                       |
+| college  | =1 if attended college         |
+| grad     | =1 if attended graduate school |
+| comten   | years with company             |
+| ceoten   | years as ceo with company      |
+| sales    | 1990 firm sales, millions      |
+| profits  | 1990 profits, millions         |
+| mktval   | market value, end 1990, mills. |
+| lsalary  | log(salary)                    |
+| lsales   | log(sales)                     |
+| lmktval  | log(mktval)                    |
+| comtensq | comten^2                       |
+| ceotensq | ceoten^2                       |
+| profmarg | profits as % of sales          |
++----------+--------------------------------+
+
+See CEOSAL1.RAW
+</pre></div>
+</div>
+</div>
+</div>
+<p>(i) Find the average salary and the average tenure in the sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Salary:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average ceoten&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;ceoten&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Salary: 865.864
+Average ceoten 7.95
+</pre></div>
+</div>
+</div>
+</div>
+<p>(ii) How many CEOs are in their first year as CEO (that is, ceoten = 0)? What is the longest tenure
+as a CEO?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of first year CEO:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;ceoten&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Longest Tenure:&quot;</span><span class="p">,</span> <span class="n">df2</span><span class="p">[</span><span class="s2">&quot;ceoten&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of first year CEO: 5
+Longest Tenure: 37
+</pre></div>
+</div>
+</div>
+</div>
+<p>(iii) Estimate the simple regression model
+$<span class="math notranslate nohighlight">\(
+\log(salary) =  {B}_0 + {B}_1 {ceoten} + u,
+\)</span>$
+and report your results in the usual form. What is the (approximate) predicted percentage
+increase in salary given one more year as a CEO?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_salary_hat</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;np.log(salary) ~ 1 + ceoten&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Paramters:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">log_salary_hat</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percentage increase:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">log_salary_hat</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paramters:
+Intercept    6.505498
+ceoten       0.009724
+dtype: float64
+Percentage increase: 0.97
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c3">
+<h3>C3<a class="headerlink" href="#c3" title="Link to this heading">#</a></h3>
+<p>Use the data in SLEEP75 from Biddle and Hamermesh (1990) to study whether there is a tradeoff
+between the time spent sleeping per week and the time spent in paid work. We could use either variable
+as the dependent variable. For concreteness,
+estimate the model
+$<span class="math notranslate nohighlight">\(
+sleep = B_0 + B_1 totwrk + u
+\)</span>$
+where sleep is minutes spent sleeping at night per week and totwrk is total minutes worked during the week</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s2">&quot;sleep75&quot;</span><span class="p">)</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>black</th>
+      <th>case</th>
+      <th>clerical</th>
+      <th>construc</th>
+      <th>educ</th>
+      <th>earns74</th>
+      <th>gdhlth</th>
+      <th>inlf</th>
+      <th>leis1</th>
+      <th>...</th>
+      <th>spwrk75</th>
+      <th>totwrk</th>
+      <th>union</th>
+      <th>worknrm</th>
+      <th>workscnd</th>
+      <th>exper</th>
+      <th>yngkid</th>
+      <th>yrsmarr</th>
+      <th>hrwage</th>
+      <th>agesq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>32</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3529</td>
+      <td>...</td>
+      <td>0</td>
+      <td>3438</td>
+      <td>0</td>
+      <td>3438</td>
+      <td>0</td>
+      <td>14</td>
+      <td>0</td>
+      <td>13</td>
+      <td>7.070004</td>
+      <td>1024</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>31</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>14</td>
+      <td>9500.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2140</td>
+      <td>...</td>
+      <td>0</td>
+      <td>5020</td>
+      <td>0</td>
+      <td>5020</td>
+      <td>0</td>
+      <td>11</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.429999</td>
+      <td>961</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>44</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>17</td>
+      <td>42500.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4595</td>
+      <td>...</td>
+      <td>1</td>
+      <td>2815</td>
+      <td>0</td>
+      <td>2815</td>
+      <td>0</td>
+      <td>21</td>
+      <td>0</td>
+      <td>0</td>
+      <td>20.529997</td>
+      <td>1936</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>30</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>42500.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3211</td>
+      <td>...</td>
+      <td>1</td>
+      <td>3786</td>
+      <td>0</td>
+      <td>3786</td>
+      <td>0</td>
+      <td>12</td>
+      <td>0</td>
+      <td>12</td>
+      <td>9.619998</td>
+      <td>900</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>64</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>14</td>
+      <td>2500.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4052</td>
+      <td>...</td>
+      <td>1</td>
+      <td>2580</td>
+      <td>0</td>
+      <td>2580</td>
+      <td>0</td>
+      <td>44</td>
+      <td>0</td>
+      <td>33</td>
+      <td>2.750000</td>
+      <td>4096</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 34 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataWoo</span><span class="p">(</span><span class="s2">&quot;sleep75&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name of dataset: sleep75
+no of variables: 34
+no of observations: 706
+
++----------+--------------------------------+
+| variable | label                          |
++----------+--------------------------------+
+| age      | in years                       |
+| black    | =1 if black                    |
+| case     | identifier                     |
+| clerical | =1 if clerical worker          |
+| construc | =1 if construction worker      |
+| educ     | years of schooling             |
+| earns74  | total earnings, 1974           |
+| gdhlth   | =1 if in good or excel. health |
+| inlf     | =1 if in labor force           |
+| leis1    | sleep - totwrk                 |
+| leis2    | slpnaps - totwrk               |
+| leis3    | rlxall - totwrk                |
+| smsa     | =1 if live in smsa             |
+| lhrwage  | log hourly wage                |
+| lothinc  | log othinc, unless othinc &lt; 0  |
+| male     | =1 if male                     |
+| marr     | =1 if married                  |
+| prot     | =1 if Protestant               |
+| rlxall   | slpnaps + personal activs      |
+| selfe    | =1 if self employed            |
+| sleep    | mins sleep at night, per wk    |
+| slpnaps  | minutes sleep, inc. naps       |
+| south    | =1 if live in south            |
+| spsepay  | spousal wage income            |
+| spwrk75  | =1 if spouse works             |
+| totwrk   | mins worked per week           |
+| union    | =1 if belong to union          |
+| worknrm  | mins work main job             |
+| workscnd | mins work second job           |
+| exper    | age - educ - 6                 |
+| yngkid   | =1 if children &lt; 3 present     |
+| yrsmarr  | years married                  |
+| hrwage   | hourly wage                    |
+| agesq    | age^2                          |
++----------+--------------------------------+
+
+J.E. Biddle and D.S. Hamermesh (1990), “Sleep and the Allocation of
+Time,” Journal of Political Economy 98, 922-943. Professor Biddle
+kindly provided the data.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="one.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1. The Nature of Econometrics and Economic Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="three.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3. Multiple Regression Analysis: Estimation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c1">C1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c2">C2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c3">C3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ahmed H. Darwish
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
