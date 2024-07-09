@@ -390,6 +390,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-3-ceo-salary-return-on-equity">Example 2.3 CEO Salary &amp; Return on Equity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-4-wage-equation">Example 2.4 Wage Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-5-vote-share">Example 2.5 Vote share</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-6-table-2-2">Example 2.6 Table 2.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-7-wage-education">Example 2.7 Wage &amp; education</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-8-ceo-salary-r-squared">Example 2.8. CEO Salary - R-squared</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example2-9-voting-outcome-r-squared">Example2.9 Voting outcome - R-squared.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c1">C1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c2">C2</a></li>
@@ -452,6 +459,1096 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="example-2-3-ceo-salary-return-on-equity">
+<h2>Example 2.3 CEO Salary &amp; Return on Equity<a class="headerlink" href="#example-2-3-ceo-salary-return-on-equity" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;ceosal1&#39;</span><span class="p">)</span>
+<span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;ceosal1&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name of dataset: ceosal1
+no of variables: 12
+no of observations: 209
+
++----------+-------------------------------+
+| variable | label                         |
++----------+-------------------------------+
+| salary   | 1990 salary, thousands $      |
+| pcsalary | % change salary, 89-90        |
+| sales    | 1990 firm sales, millions $   |
+| roe      | return on equity, 88-90 avg   |
+| pcroe    | % change roe, 88-90           |
+| ros      | return on firm&#39;s stock, 88-90 |
+| indus    | =1 if industrial firm         |
+| finance  | =1 if financial firm          |
+| consprod | =1 if consumer product firm   |
+| utility  | =1 if transport. or utilties  |
+| lsalary  | natural log of salary         |
+| lsales   | natural log of sales          |
++----------+-------------------------------+
+
+I took a random sample of data reported in the May 6, 1991 issue of
+Businessweek.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>salary</th>
+      <th>pcsalary</th>
+      <th>sales</th>
+      <th>roe</th>
+      <th>pcroe</th>
+      <th>ros</th>
+      <th>indus</th>
+      <th>finance</th>
+      <th>consprod</th>
+      <th>utility</th>
+      <th>lsalary</th>
+      <th>lsales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1095</td>
+      <td>20</td>
+      <td>27595.000000</td>
+      <td>14.1</td>
+      <td>106.400002</td>
+      <td>191</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6.998509</td>
+      <td>10.225389</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1001</td>
+      <td>32</td>
+      <td>9958.000000</td>
+      <td>10.9</td>
+      <td>-30.600000</td>
+      <td>13</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6.908755</td>
+      <td>9.206132</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1122</td>
+      <td>9</td>
+      <td>6125.899902</td>
+      <td>23.5</td>
+      <td>-16.299999</td>
+      <td>14</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.022868</td>
+      <td>8.720281</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>578</td>
+      <td>-9</td>
+      <td>16246.000000</td>
+      <td>5.9</td>
+      <td>-25.700001</td>
+      <td>-21</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6.359574</td>
+      <td>9.695602</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1368</td>
+      <td>7</td>
+      <td>21783.199219</td>
+      <td>13.8</td>
+      <td>-3.000000</td>
+      <td>56</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.221105</td>
+      <td>9.988894</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;salary ~ 1 + roe&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>salary</td>      <th>  R-squared:         </th> <td>   0.013</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.008</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   2.767</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 09 Jul 2024</td> <th>  Prob (F-statistic):</th>  <td>0.0978</td> 
+</tr>
+<tr>
+  <th>Time:</th>                 <td>21:56:56</td>     <th>  Log-Likelihood:    </th> <td> -1804.5</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   209</td>      <th>  AIC:               </th> <td>   3613.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   207</td>      <th>  BIC:               </th> <td>   3620.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>  963.1913</td> <td>  213.240</td> <td>    4.517</td> <td> 0.000</td> <td>  542.790</td> <td> 1383.592</td>
+</tr>
+<tr>
+  <th>roe</th>       <td>   18.5012</td> <td>   11.123</td> <td>    1.663</td> <td> 0.098</td> <td>   -3.428</td> <td>   40.431</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>311.096</td> <th>  Durbin-Watson:     </th> <td>   2.105</td> 
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td>  <th>  Jarque-Bera (JB):  </th> <td>31120.902</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 6.915</td>  <th>  Prob(JB):          </th> <td>    0.00</td> 
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td>61.158</td>  <th>  Cond. No.          </th> <td>    43.3</td> 
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 salary   R-squared:                       0.013
+Model:                            OLS   Adj. R-squared:                  0.008
+Method:                 Least Squares   F-statistic:                     2.767
+Date:                Tue, 09 Jul 2024   Prob (F-statistic):             0.0978
+Time:                        21:56:56   Log-Likelihood:                -1804.5
+No. Observations:                 209   AIC:                             3613.
+Df Residuals:                     207   BIC:                             3620.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept    963.1913    213.240      4.517      0.000     542.790    1383.592
+roe           18.5012     11.123      1.663      0.098      -3.428      40.431
+==============================================================================
+Omnibus:                      311.096   Durbin-Watson:                   2.105
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            31120.902
+Skew:                           6.915   Prob(JB):                         0.00
+Kurtosis:                      61.158   Cond. No.                         43.3
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intercept    963.191336
+roe           18.501186
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">nobs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>209.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>if the return on equity increases
+by one percentage point,  then salary is predicted to change by about 18.5</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_salary</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;roe&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">30</span><span class="p">]}))</span>
+<span class="n">predicted_salary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    1518.226927
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2-4-wage-equation">
+<h2>Example 2.4 Wage Equation<a class="headerlink" href="#example-2-4-wage-equation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;wage1&#39;</span><span class="p">)</span>
+<span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;wage1&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name of dataset: wage1
+no of variables: 24
+no of observations: 526
+
++----------+---------------------------------+
+| variable | label                           |
++----------+---------------------------------+
+| wage     | average hourly earnings         |
+| educ     | years of education              |
+| exper    | years potential experience      |
+| tenure   | years with current employer     |
+| nonwhite | =1 if nonwhite                  |
+| female   | =1 if female                    |
+| married  | =1 if married                   |
+| numdep   | number of dependents            |
+| smsa     | =1 if live in SMSA              |
+| northcen | =1 if live in north central U.S |
+| south    | =1 if live in southern region   |
+| west     | =1 if live in western region    |
+| construc | =1 if work in construc. indus.  |
+| ndurman  | =1 if in nondur. manuf. indus.  |
+| trcommpu | =1 if in trans, commun, pub ut  |
+| trade    | =1 if in wholesale or retail    |
+| services | =1 if in services indus.        |
+| profserv | =1 if in prof. serv. indus.     |
+| profocc  | =1 if in profess. occupation    |
+| clerocc  | =1 if in clerical occupation    |
+| servocc  | =1 if in service occupation     |
+| lwage    | log(wage)                       |
+| expersq  | exper^2                         |
+| tenursq  | tenure^2                        |
++----------+---------------------------------+
+
+These are data from the 1976 Current Population Survey, collected by
+Henry Farber when he and I were colleagues at MIT in 1988.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wage</th>
+      <th>educ</th>
+      <th>exper</th>
+      <th>tenure</th>
+      <th>nonwhite</th>
+      <th>female</th>
+      <th>married</th>
+      <th>numdep</th>
+      <th>smsa</th>
+      <th>northcen</th>
+      <th>...</th>
+      <th>trcommpu</th>
+      <th>trade</th>
+      <th>services</th>
+      <th>profserv</th>
+      <th>profocc</th>
+      <th>clerocc</th>
+      <th>servocc</th>
+      <th>lwage</th>
+      <th>expersq</th>
+      <th>tenursq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3.10</td>
+      <td>11</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.131402</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.24</td>
+      <td>12</td>
+      <td>22</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1.175573</td>
+      <td>484</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.00</td>
+      <td>11</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.098612</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6.00</td>
+      <td>8</td>
+      <td>44</td>
+      <td>28</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.791759</td>
+      <td>1936</td>
+      <td>784</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.30</td>
+      <td>12</td>
+      <td>7</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.667707</td>
+      <td>49</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;wage ~ educ&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   wage   R-squared:                       0.165
+Model:                            OLS   Adj. R-squared:                  0.163
+Method:                 Least Squares   F-statistic:                     103.4
+Date:                Tue, 09 Jul 2024   Prob (F-statistic):           2.78e-22
+Time:                        21:56:56   Log-Likelihood:                -1385.7
+No. Observations:                 526   AIC:                             2775.
+Df Residuals:                     524   BIC:                             2784.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     -0.9049      0.685     -1.321      0.187      -2.250       0.441
+educ           0.5414      0.053     10.167      0.000       0.437       0.646
+==============================================================================
+Omnibus:                      212.554   Durbin-Watson:                   1.824
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              807.843
+Skew:                           1.861   Prob(JB):                    3.79e-176
+Kurtosis:                       7.797   Cond. No.                         60.2
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The intercept of −0.90 literally means that a person
+with no education has a predicted hourly wage of −90¢ an hour</p>
+<p>one more year of education increases hourly wage by
+54¢ an hour</p>
+</section>
+<section id="example-2-5-vote-share">
+<h2>Example 2.5 Vote share<a class="headerlink" href="#example-2-5-vote-share" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;vote1&#39;</span><span class="p">)</span>
+<span class="n">dataWoo</span><span class="p">(</span><span class="s1">&#39;vote1&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name of dataset: vote1
+no of variables: 10
+no of observations: 173
+
++----------+---------------------------------+
+| variable | label                           |
++----------+---------------------------------+
+| state    | state postal code               |
+| district | congressional district          |
+| democA   | =1 if A is democrat             |
+| voteA    | percent vote for A              |
+| expendA  | camp. expends. by A, $1000s     |
+| expendB  | camp. expends. by B, $1000s     |
+| prtystrA | % vote for president            |
+| lexpendA | log(expendA)                    |
+| lexpendB | log(expendB)                    |
+| shareA   | 100*(expendA/(expendA+expendB)) |
++----------+---------------------------------+
+
+From M. Barone and G. Ujifusa, The Almanac of American Politics, 1992.
+Washington, DC: National Journal.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>district</th>
+      <th>democA</th>
+      <th>voteA</th>
+      <th>expendA</th>
+      <th>expendB</th>
+      <th>prtystrA</th>
+      <th>lexpendA</th>
+      <th>lexpendB</th>
+      <th>shareA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AL</td>
+      <td>7</td>
+      <td>1</td>
+      <td>68</td>
+      <td>328.295990</td>
+      <td>8.737000</td>
+      <td>41</td>
+      <td>5.793916</td>
+      <td>2.167567</td>
+      <td>97.407669</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AK</td>
+      <td>1</td>
+      <td>0</td>
+      <td>62</td>
+      <td>626.377014</td>
+      <td>402.476990</td>
+      <td>60</td>
+      <td>6.439952</td>
+      <td>5.997638</td>
+      <td>60.881039</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AZ</td>
+      <td>2</td>
+      <td>1</td>
+      <td>73</td>
+      <td>99.607002</td>
+      <td>3.065000</td>
+      <td>55</td>
+      <td>4.601233</td>
+      <td>1.120048</td>
+      <td>97.014763</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AZ</td>
+      <td>3</td>
+      <td>0</td>
+      <td>69</td>
+      <td>319.690002</td>
+      <td>26.281000</td>
+      <td>64</td>
+      <td>5.767352</td>
+      <td>3.268846</td>
+      <td>92.403702</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AR</td>
+      <td>3</td>
+      <td>0</td>
+      <td>75</td>
+      <td>159.220993</td>
+      <td>60.054001</td>
+      <td>66</td>
+      <td>5.070293</td>
+      <td>4.095244</td>
+      <td>72.612473</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;voteA ~ shareA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model3</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  voteA   R-squared:                       0.856
+Model:                            OLS   Adj. R-squared:                  0.855
+Method:                 Least Squares   F-statistic:                     1018.
+Date:                Tue, 09 Jul 2024   Prob (F-statistic):           6.63e-74
+Time:                        21:56:56   Log-Likelihood:                -565.20
+No. Observations:                 173   AIC:                             1134.
+Df Residuals:                     171   BIC:                             1141.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     26.8122      0.887     30.221      0.000      25.061      28.564
+shareA         0.4638      0.015     31.901      0.000       0.435       0.493
+==============================================================================
+Omnibus:                       20.747   Durbin-Watson:                   1.826
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               44.613
+Skew:                           0.525   Prob(JB):                     2.05e-10
+Kurtosis:                       5.255   Cond. No.                         112.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>if Candidate A’s share of spending increases by one percentage point, Candidate A
+receives almost one-half a percentage point (0.464) more of the total vote.</p>
+</section>
+<section id="example-2-6-table-2-2">
+<h2>Example 2.6 Table 2.2<a class="headerlink" href="#example-2-6-table-2-2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;salary_hat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fittedvalues</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;uhat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">resid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;roe&#39;</span><span class="p">,</span><span class="s1">&#39;salary&#39;</span><span class="p">,</span><span class="s1">&#39;salary_hat&#39;</span><span class="p">,</span><span class="s1">&#39;uhat&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>roe</th>
+      <th>salary</th>
+      <th>salary_hat</th>
+      <th>uhat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>14.100000</td>
+      <td>1095</td>
+      <td>1224.058071</td>
+      <td>-129.058071</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10.900000</td>
+      <td>1001</td>
+      <td>1164.854261</td>
+      <td>-163.854261</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>23.500000</td>
+      <td>1122</td>
+      <td>1397.969216</td>
+      <td>-275.969216</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.900000</td>
+      <td>578</td>
+      <td>1072.348338</td>
+      <td>-494.348338</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>13.800000</td>
+      <td>1368</td>
+      <td>1218.507712</td>
+      <td>149.492288</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>20.000000</td>
+      <td>1145</td>
+      <td>1333.215063</td>
+      <td>-188.215063</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>16.400000</td>
+      <td>1078</td>
+      <td>1266.610785</td>
+      <td>-188.610785</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>16.299999</td>
+      <td>1094</td>
+      <td>1264.760660</td>
+      <td>-170.760660</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>10.500000</td>
+      <td>1237</td>
+      <td>1157.453793</td>
+      <td>79.546207</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>26.299999</td>
+      <td>833</td>
+      <td>1449.772523</td>
+      <td>-616.772523</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>25.900000</td>
+      <td>567</td>
+      <td>1442.372056</td>
+      <td>-875.372056</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>26.799999</td>
+      <td>933</td>
+      <td>1459.023116</td>
+      <td>-526.023116</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>14.800000</td>
+      <td>1339</td>
+      <td>1237.008898</td>
+      <td>101.991102</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>22.299999</td>
+      <td>937</td>
+      <td>1375.767778</td>
+      <td>-438.767778</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>56.299999</td>
+      <td>2011</td>
+      <td>2004.808114</td>
+      <td>6.191886</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>12.600000</td>
+      <td>1585</td>
+      <td>1196.306291</td>
+      <td>388.693709</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The first four CEOs have lower salaries than what we predicted from the OLS regression
+line (2.26); in other words, given only the firm’s roe, these CEOs make less than what we
+predicted. As can be seen from the positive uhat, the fifth CEO makes more than predicted from
+the OLS regression line.</p>
+</section>
+<section id="example-2-7-wage-education">
+<h2>Example 2.7 Wage &amp; education<a class="headerlink" href="#example-2-7-wage-education" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;wage&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(5.896102674787035)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;educ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(12.562737642585551)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   wage   R-squared:                       0.165
+Model:                            OLS   Adj. R-squared:                  0.163
+Method:                 Least Squares   F-statistic:                     103.4
+Date:                Tue, 09 Jul 2024   Prob (F-statistic):           2.78e-22
+Time:                        21:56:56   Log-Likelihood:                -1385.7
+No. Observations:                 526   AIC:                             2775.
+Df Residuals:                     524   BIC:                             2784.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     -0.9049      0.685     -1.321      0.187      -2.250       0.441
+educ           0.5414      0.053     10.167      0.000       0.437       0.646
+==============================================================================
+Omnibus:                      212.554   Durbin-Watson:                   1.824
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              807.843
+Skew:                           1.861   Prob(JB):                    3.79e-176
+Kurtosis:                       7.797   Cond. No.                         60.2
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;educ&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">12.56</span><span class="p">]}))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    5.894621
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span>  fall on the regression line</p>
+</section>
+<section id="example-2-8-ceo-salary-r-squared">
+<h2>Example 2.8. CEO Salary - R-squared<a class="headerlink" href="#example-2-8-ceo-salary-r-squared" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 salary   R-squared:                       0.013
+Model:                            OLS   Adj. R-squared:                  0.008
+Method:                 Least Squares   F-statistic:                     2.767
+Date:                Tue, 09 Jul 2024   Prob (F-statistic):             0.0978
+Time:                        21:56:56   Log-Likelihood:                -1804.5
+No. Observations:                 209   AIC:                             3613.
+Df Residuals:                     207   BIC:                             3620.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept    963.1913    213.240      4.517      0.000     542.790    1383.592
+roe           18.5012     11.123      1.663      0.098      -3.428      40.431
+==============================================================================
+Omnibus:                      311.096   Durbin-Watson:                   2.105
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            31120.902
+Skew:                           6.915   Prob(JB):                         0.00
+Kurtosis:                      61.158   Cond. No.                         43.3
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">rsquared</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.01318862408103405)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The firm’s return on equity explains only about 1.3% of the variation in salaries for this sample of 209 CEOs.</p>
+</section>
+<section id="example2-9-voting-outcome-r-squared">
+<h2>Example2.9 Voting outcome - R-squared.<a class="headerlink" href="#example2-9-voting-outcome-r-squared" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model3</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  voteA   R-squared:                       0.856
+Model:                            OLS   Adj. R-squared:                  0.855
+Method:                 Least Squares   F-statistic:                     1018.
+Date:                Tue, 09 Jul 2024   Prob (F-statistic):           6.63e-74
+Time:                        21:56:56   Log-Likelihood:                -565.20
+No. Observations:                 173   AIC:                             1134.
+Df Residuals:                     171   BIC:                             1141.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     26.8122      0.887     30.221      0.000      25.061      28.564
+shareA         0.4638      0.015     31.901      0.000       0.435       0.493
+==============================================================================
+Omnibus:                       20.747   Durbin-Watson:                   1.826
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               44.613
+Skew:                           0.525   Prob(JB):                     2.05e-10
+Kurtosis:                       5.255   Cond. No.                         112.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model3</span><span class="o">.</span><span class="n">rsquared</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.8561408655827665)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The share of campaign expenditures explains over 85% of the variation in the election outcomes for this sample</p>
+</section>
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="c1">
@@ -1219,6 +2316,13 @@ kindly provided the data.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-3-ceo-salary-return-on-equity">Example 2.3 CEO Salary &amp; Return on Equity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-4-wage-equation">Example 2.4 Wage Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-5-vote-share">Example 2.5 Vote share</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-6-table-2-2">Example 2.6 Table 2.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-7-wage-education">Example 2.7 Wage &amp; education</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-8-ceo-salary-r-squared">Example 2.8. CEO Salary - R-squared</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example2-9-voting-outcome-r-squared">Example2.9 Voting outcome - R-squared.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c1">C1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c2">C2</a></li>
