@@ -1,6 +1,6 @@
-# Welcome to Introductory Econometrics Python Solution  
+# Welcome
 
-Welcome to the  interactive Python solutions book for "Introductory Econometrics: A Modern Approach, 7th Edition" by Jeffrey M. Wooldridge. This JupyterBook aims to provide comprehensive solutions to the examples and exercises found throughout Wooldridge's seminal text, facilitating a deeper understanding of econometric principles through practical application.
+to the  interactive Python solutions book for "Introductory Econometrics: A Modern Approach, 7th Edition" by Jeffrey M. Wooldridge. This JupyterBook aims to provide comprehensive solutions to the examples and exercises found throughout Wooldridge's seminal text, facilitating a deeper understanding of econometric principles through practical application.
 
 ## Objectives
 
